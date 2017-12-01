@@ -48,7 +48,7 @@ if [ ! -x $NIM_BIN ]; then
     # cd ..
     # bin/nim c koch
     # ./koch boot -d:release
-    curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+    curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -y
     choosenim stable
 
     echo "using ${nim_repo} @${nim_branch}" | indent
