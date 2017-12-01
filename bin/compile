@@ -23,7 +23,7 @@ ENV_DIR=$3
 NIM_DIR=$CACHE_DIR/Nim
 NIM_BIN=$NIM_DIR/bin/nim
 
-NIMBLE_DIR=$CACHE_DIR/.nimble
+NIMBLE_DIR=$HOME/.nimble
 NIMBLE_BIN=$NIMBLE_DIR/bin/nimble
 
 PATH="$NIM_DIR/bin:$NIMBLE_DIR/bin:$PATH"
@@ -41,14 +41,15 @@ if [ ! -x $NIM_BIN ]; then
 
     echo "Installing Nim..." | arrow
 
-    git clone --depth 1 --branch $nim_branch $nim_repo $NIM_DIR
-    cd $NIM_DIR
-    git clone --depth 1 $nim_csources csources
-    cd csources && sh build.sh
-    cd ..
-    bin/nim c koch
-    ./koch boot -d:release
-
+    # git clone --depth 1 --branch $nim_branch $nim_repo $NIM_DIR
+    # cd $NIM_DIR
+    # git clone --depth 1 $nim_csources csources
+    # cd csources && sh build.sh
+    # cd ..
+    # bin/nim c koch
+    # ./koch boot -d:release
+    curl https://nim-lang.org/choosenim/init.sh -sSf | sh
+    choosenim stable
 
     echo "using ${nim_repo} @${nim_branch}" | indent
 fi
